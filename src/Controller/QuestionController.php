@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class QuestionController
+class QuestionController extends AbstractController
 {
     /**
      * @Route("/")
@@ -19,12 +20,17 @@ class QuestionController
      * @Route("/pizza/{slug}")
      **/
     public function pizza($slug) {
-        return new Response( sprintf(
-            '<html>
-                        <body>
-                            <h1>Choose your pizza!</h1>
-                            <p>Your pizza is "%s"!', ucwords(str_replace('-', ' ', $slug)), '</p>
-                        </body>
-                    </html>'));
+
+        $answers = [
+            'Is there enough cheese on the pizza',
+            'What it is not diffided on the pizza!?',
+            'More tuna!!',
+            ];
+
+        return $this->render('question/pizza.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)),
+            'answers' => $answers,
+        ]);
+
     }
 }

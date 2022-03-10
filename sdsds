@@ -1,0 +1,24 @@
+warning: LF will be replaced by CRLF in composer.json.
+The file will have its original line endings in your working directory
+[1mdiff --git a/composer.json b/composer.json[m
+[1mindex c3bae04..6055fdb 100644[m
+[1m--- a/composer.json[m
+[1m+++ b/composer.json[m
+[36m@@ -14,6 +14,7 @@[m
+         "phpdocumentor/reflection-docblock": "^5.3",[m
+         "phpstan/phpdoc-parser": "^1.2",[m
+         "sensio/framework-extra-bundle": "^6.2",[m
+[32m+[m[32m        "sensiolabs/security-checker": "^6.0",[m
+         "symfony/asset": "5.4.*",[m
+         "symfony/console": "5.4.*",[m
+         "symfony/doctrine-messenger": "5.4.*",[m
+[36m@@ -76,7 +77,8 @@[m
+     "scripts": {[m
+         "auto-scripts": {[m
+             "cache:clear": "symfony-cmd",[m
+[31m-            "assets:install %PUBLIC_DIR%": "symfony-cmd"[m
+[32m+[m[32m            "assets:install %PUBLIC_DIR%": "symfony-cmd",[m
+[32m+[m[32m            "security-checker security:check": "script"[m
+         },[m
+         "post-install-cmd": [[m
+             "@auto-scripts"[m

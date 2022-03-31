@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron-img jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Welkom bij Pizza Gooo</h1>
+            <p class="lead">We serveren verschillende Italiaanse pizza's!</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <button class="btn btn-question">Kies uw pizza</button>
+            </div>
+        </div>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-sm-4 col-md-4">
+                <div class="card">
+                        <img src="{{ category.img }}" alt="">
+                        <div class="card-body">
+                            <div class="card-title">{{ category.title }}</div>
+                            <p>{{ category.content }}</p>
+                            <a href="{{ path('pizza_category', { slug: 'pizza_vlees'}) }}"><input type="submit" class="action" value="Naar de vlees pizza's"></a>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+    <footer>
+        <h3>Contact</h3>
+        <ul>
+            <p>Pizza Gooo</p>
+            <p>Hugo de grootlaan 433</p>
+            <p>2676 RJ Den Haag</p>
+        </ul>
+    </footer>
+{% endblock %}
+

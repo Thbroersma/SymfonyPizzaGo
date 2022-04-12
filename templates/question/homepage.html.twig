@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div class="card-title">{{ category.title }}</div>
                             <p>{{ category.content }}</p>
-                            <a href="{{ path('pizza_category', { slug: 'pizza_vlees'}) }}"><input type="submit" class="action" value="Naar de vlees pizza's"></a>
+                            <a href="{{ path('pizza', {id:category.id}) }}"><input type="submit" class="action" value="Naar de vlees pizza's"></a>
                         </div>
                 </div>
             </div>

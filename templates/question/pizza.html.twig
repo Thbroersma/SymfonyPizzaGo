@@ -1,23 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Question: {{ category.title }}{% endblock %}
+{% block title %}{% for pizza in pizza %}{{ pizza.name}} {% endfor %}{% endblock %}
+
 
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="my-4">Question</h2>
+                <h2 class="my-4">{% for pizza in pizza %}{{ pizza.name}} {% endfor %}</h2>
                 <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
                     <div class="q-container-show p-4">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <img src="{{ category.img }}" width="100" height="100">
+                                <img src="" width="100" height="100">
                             </div>
                             <div class="col">
-                                <h1 class="q-title-show">{{ category.title }}</h1>
+                                <h1 class="q-title-show"></h1>
                                 <div class="container p-3">
                                     <i class="fa fa-quote-left mr-3"></i>
-                                    <p class="d-inline">{{ category.content }}</p>
+                                    <p class="d-inline"></p>
                                     <p class="pt-4"><strong>--Thierry</strong></p>
                                 </div>
                             </div>
@@ -27,16 +28,16 @@
             </div>
         </div>
         <ul class="list-unstyled">
-            {% for answer in answers %}
+            {% for pizza in pizza %}
                 <li class="mb-4">
                     <div class="d-flex justify-content-center">
                         <div class="card pizza-cards">
-                            <img src="{{ category.img }}" width="50%" class="pizza-img">
+                            <img src="{{ pizza.image }}" width="50%" class="pizza-img">
                             <div class="card-title">
-                                <p>De pizza pepperoni</p>
+                                <p>{{ pizza.name }}</p>
                             </div>
                             <div class="card-body">
-                                <p>Ingrediënten: kaas, tomatensaus, pepperoni en salami</p>
+                                <p>{{ pizza.description }}</p>
                             </div>
                         </div>
 

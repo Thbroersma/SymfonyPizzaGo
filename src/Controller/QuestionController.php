@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Pizza;
+use App\Repository\CategoryRepository;
+use App\Repository\PizzaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,21 +32,14 @@ class QuestionController extends AbstractController
         ]);
     }
     /**
-     * @Route("/pizza/{id}", name="pizza")
+     * @Route("/pizza/{id}", name="app_cat")
      **/
-    public function pizza(EntityManagerInterface $em, $id) {
+    public function pizza(Category $category, PizzaRepository $pizzaRepository) {
 
-
-        $pizzaCategory = [
-            'Vlees',
-            'Vegatrisch',
-            'Vis',
-            ];
-        /*$repositoryPizza =$em->getRepository(Pizza::class);
-        /** @var  $pizzaCategory *//*
-        $pizzas = $repositoryPizza->findBy(['category', $id]);*/
+        $pizza = $pizzaRepository->findBy(['Article' => $category]);
+/*
         $repository = $em->getRepository(Category::class);
-        /** @var Category $category */
+        /** @var Category $category
         $categories = $repository->findAll();
 
         $category=$em->getRepository(Category::class)
@@ -52,12 +47,12 @@ class QuestionController extends AbstractController
         $pizzas=$category->getPizzas();
         if (!$pizzas) {
             throw $this->createNotFoundException(sprintf('No category for slug "%s"', $id));
-        }
+        }*/
 
 
         return $this->render('question/pizza.html.twig', [
-            'categories' => $categories,
-            'pizza' => $pizzas
+            'id' => $category,
+            'pizzas' => $pizza
         ]);
 
     }

@@ -74,6 +74,9 @@ footer {
     width: 100%;
     padding-bottom: 5vh;
     }
+input {
+    margin-left: 1vw;
+}
 .jumbotron-img {
     background: rgb(245, 82, 48);
     background: linear-gradient(90deg, green, white, red);

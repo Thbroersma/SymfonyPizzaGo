@@ -35,6 +35,9 @@ class Order
     #[ORM\ManyToOne(targetEntity: Pizza::class, inversedBy: 'orders')]
     private $pizza;
 
+    #[ORM\Column(type: 'integer')]
+    private $amount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Order
     public function setPizza(?Pizza $pizza): self
     {
         $this->pizza = $pizza;
+
+        return $this;
+    }
+
+    public function getAmount(): ?int
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(int $amount): self
+    {
+        $this->amount = $amount;
 
         return $this;
     }

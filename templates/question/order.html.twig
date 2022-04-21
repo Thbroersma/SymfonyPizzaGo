@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2>Bestel jouw pizza</h2>
+
+    {{ form_start(orderForm) }}
+        {{ form_widget(orderForm) }}
+
+    <button type="submit" class="btn btn-primary">Plaats uw bestelling</button>
+    {{ form_end(orderForm) }}
+{% endblock %}

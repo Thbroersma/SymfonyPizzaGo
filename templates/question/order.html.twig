@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h2>Bestel jouw pizza</h2>
-
+    <h4>{{ pizza.name }}</h4>
+    <img src="{{ pizza.image }}" alt="" class="order-pizza">
+    <p class="hide">{{ pizza.id }}</p>
     {{ form_start(orderForm) }}
         {{ form_widget(orderForm) }}
-
     <button type="submit" class="btn btn-primary">Plaats uw bestelling</button>
     {{ form_end(orderForm) }}
 {% endblock %}

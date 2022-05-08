@@ -35,24 +35,29 @@ class QuestionController extends AbstractController
         ]);
     }
     /**
+     * @Route("/pizzaTotal", name="app_homePizza")
+     **/
+    public function homepizza(EntityManagerInterface $em)
+    {
+        $slug = [
+            'pizza_vlees',
+            'pizza_vega',
+            'pizza_vis',
+        ];
+        $repository = $em->getRepository(Category::class);
+        /** @var Category $category */
+        $categories = $repository->findAll();
+
+        return $this->render('question/homepizza.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+    /**
      * @Route("/pizza/{id}", name="app_cat")
      **/
     public function pizza(Category $category, PizzaRepository $pizzaRepository) {
 
         $pizza = $pizzaRepository->findBy(['Article' => $category]);
-/*
-        $repository = $em->getRepository(Category::class);
-        /** @var Category $category
-        $categories = $repository->findAll();
-
-        $category=$em->getRepository(Category::class)
-            ->find($id);
-        $pizzas=$category->getPizzas();
-        if (!$pizzas) {
-            throw $this->createNotFoundException(sprintf('No category for slug "%s"', $id));
-        }*/
-
-
         return $this->render('question/pizza.html.twig', [
             'id' => $category,
             'pizzas' => $pizza
@@ -60,11 +65,12 @@ class QuestionController extends AbstractController
 
     }
     /**
-     * @Route("/pizza/{id}/order", name="app_order")
+     * @Route("/order/{id}", name="app_order")
      **/
-    public function order(EntityManagerInterface $em, Request $request) {
+    public function order(EntityManagerInterface $em, Request $request, $id) {
 
 
+        $pizza = $em->getRepository(Pizza::class)->find($id);
         $order = $this->createForm(\FormNEw::class);
 
         $order->handleRequest($request);
@@ -76,15 +82,18 @@ class QuestionController extends AbstractController
             $orders->setAddress($data['adres']);
             $orders->setCity($data['stad']);
             $orders->setZipcode($data['postcode']);
+            //$orders->setPizza($data[$id]);
             $orders->setAmount($data['aantal']);
             $em->persist($orders);
             $em->flush();
 
-            return $this->redirectToRoute("app_homepage");
+            return $this->redirectToRoute("app_homePizza");
         }
 
         return $this->render('question/order.html.twig', [
            'orderForm' => $order->createView(),
+            'pizza' => $pizza,
+
         ]);
 
     }

@@ -74,6 +74,9 @@ footer {
     width: 100%;
     padding-bottom: 5vh;
     }
+.hide {
+
+}
 input {
     margin-left: 1vw;
 }
@@ -83,7 +86,9 @@ input {
     border: 1px solid black;
     color: #fff;
 }
-
+.order-pizza {
+    width: 25%;
+}
 .q-container {
     border-top-right-radius: .25rem;
     border-top-left-radius: .25rem;

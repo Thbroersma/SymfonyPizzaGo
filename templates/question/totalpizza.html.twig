@@ -13,15 +13,16 @@
                 <button class="btn btn-question">Kies uw pizza</button>
             </div>
         </div>
+
+
         <div class="row">
-            {% for category in categories %}
+            {% for order in orders %}
             <div class="col-sm-4 col-md-4">
                 <div class="card">
-                        <img src="{{ category.img }}" alt="">
                         <div class="card-body">
-                            <div class="card-title">{{ category.title }}</div>
-                            <p>{{ category.content }}</p>
-                            <a href="{{ path('app_cat', { id: category.id}) }}"><input type="submit" class="action" value="Naar de {{ category.title }}"></a>
+                            <div class="card-title">{{ order.firstname }} {{ order.lastname }}</div>
+                            <p>{{ order.amount }} </p>
+                            <p>{{ order.status }}</p>
                         </div>
                 </div>
             </div>

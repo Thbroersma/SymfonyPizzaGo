@@ -34,24 +34,7 @@ class QuestionController extends AbstractController
             'categories' => $categories
         ]);
     }
-    /**
-     * @Route("/pizzaTotal", name="app_homePizza")
-     **/
-    public function homepizza(EntityManagerInterface $em)
-    {
-        $slug = [
-            'pizza_vlees',
-            'pizza_vega',
-            'pizza_vis',
-        ];
-        $repository = $em->getRepository(Category::class);
-        /** @var Category $category */
-        $categories = $repository->findAll();
 
-        return $this->render('question/homepizza.html.twig', [
-            'categories' => $categories
-        ]);
-    }
     /**
      * @Route("/pizza/{id}", name="app_cat")
      **/
@@ -96,5 +79,21 @@ class QuestionController extends AbstractController
 
         ]);
 
+    }
+    /**
+     * @Route("/pizzaTotal", name="app_homePizza")
+     **/
+    public function totalpizza(EntityManagerInterface $em)
+    {
+        // $pizza = $pizzaRepository->findBy(['id' => $order]);
+
+        $repository = $em->getRepository(Order::class);
+        /** @var Order $category */
+        $orders = $repository->findAll();
+
+        return $this->render('question/totalpizza.html.twig', [
+            'orders' => $orders,
+            // 'pizzas' => $pizza
+        ]);
     }
 }

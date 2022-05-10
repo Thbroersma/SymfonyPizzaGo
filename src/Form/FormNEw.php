@@ -8,13 +8,13 @@ class FormNEw extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('voornaam')
-            ->add('achternaam')
-            ->add('adres')
-            ->add('stad')
-            ->add('postcode')
-            ->add('grote')
-            ->add('aantal')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('address')
+            ->add('city')
+            ->add('zipcode')
+            ->add('size')
+            ->add('amount')
             ;
     }
 

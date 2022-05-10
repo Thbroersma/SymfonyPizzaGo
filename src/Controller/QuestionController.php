@@ -54,30 +54,26 @@ class QuestionController extends AbstractController
 
 
         $pizza = $em->getRepository(Pizza::class)->find($id);
-        $order = $this->createForm(\FormNEw::class);
+        $order = new Order();
 
-        $order->handleRequest($request);
-        if ($order->isSubmitted() && $order->isValid()) {
-            $data = $order->getData();
-            $orders = new Order();
-            $orders->setFirstname($data['voornaam']);
-            $orders->setLastname($data['achternaam']);
-            $orders->setAddress($data['adres']);
-            $orders->setCity($data['stad']);
-            $orders->setZipcode($data['postcode']);
-            $orders->setStatus('Geplaatst');
-            $orders->setSize($data['grote']);
+        $form = $this->createForm(\FormNEw::class, $order);
 
-            //$orders->setPizza($data[$id]);
-            $orders->setAmount($data['aantal']);
-            $em->persist($orders);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$data = $order->getData();
+            $order=$form->getData();
+            $order->setPizza($pizza);
+            $order->setStatus("Uw bestelling is geplaatst");
+            $em->persist($order);
             $em->flush();
 
             return $this->redirectToRoute("app_homePizza");
         }
 
         return $this->render('question/order.html.twig', [
-           'orderForm' => $order->createView(),
+           'orderForm' => $form->createView(),
             'pizza' => $pizza,
 
         ]);

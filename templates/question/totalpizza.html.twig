@@ -4,13 +4,13 @@
     <div class="jumbotron-img jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Welkom bij Pizza Gooo</h1>
-            <p class="lead">Uw bestelling is geplaatst! We gaan hem nu zo snel mogelijk voor u klaar maken.</p>
         </div>
     </div>
     <div class="container">
         <div class="row mb-3">
             <div class="col">
-                <button class="btn btn-question">Kies uw pizza</button>
+                <p class="lead">Uw bestelling is geplaatst! We gaan hem nu zo snel mogelijk voor u klaar maken.</p>
+
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                 <div class="card">
                         <div class="card-body">
                             <div class="card-title">{{ order.firstname }} {{ order.lastname }}</div>
-                            <p>{{ order.amount }} </p>
+                            <p>{{ order.amount }} {{ order.size }}  </p>
                             <p>{{ order.status }}</p>
                         </div>
                 </div>

@@ -13,6 +13,7 @@ class FormNEw extends AbstractType
             ->add('adres')
             ->add('stad')
             ->add('postcode')
+            ->add('grote')
             ->add('aantal')
             ;
     }

@@ -38,6 +38,10 @@ class Order
     #[ORM\Column(type: 'integer')]
     private $amount;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private $size;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,4 +142,18 @@ class Order
 
         return $this;
     }
+
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+
+    public function setSize(?string $size): self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+
 }

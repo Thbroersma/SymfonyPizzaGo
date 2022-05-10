@@ -65,6 +65,9 @@ class QuestionController extends AbstractController
             $orders->setAddress($data['adres']);
             $orders->setCity($data['stad']);
             $orders->setZipcode($data['postcode']);
+            $orders->setStatus('Geplaatst');
+            $orders->setSize($data['grote']);
+
             //$orders->setPizza($data[$id]);
             $orders->setAmount($data['aantal']);
             $em->persist($orders);
@@ -83,17 +86,26 @@ class QuestionController extends AbstractController
     /**
      * @Route("/pizzaTotal", name="app_homePizza")
      **/
-    public function totalpizza(EntityManagerInterface $em)
+    public function totalpizza(EntityManagerInterface $em/*, Pizza $pizza, OrderRepository $orderRepository*/)
     {
-        // $pizza = $pizzaRepository->findBy(['id' => $order]);
+        /*
+        public function pizza(Category $category, PizzaRepository $pizzaRepository) {
 
+        $pizza = $pizzaRepository->findBy(['Article' => $category]);
+        return $this->render('question/pizza.html.twig', [
+            'id' => $category,
+            'pizzas' => $pizza
+        ]);*/
+        /*
+                $order = $orderRepository->findBy(['pizza' => $pizza]);
+                */
         $repository = $em->getRepository(Order::class);
         /** @var Order $category */
         $orders = $repository->findAll();
 
         return $this->render('question/totalpizza.html.twig', [
-            'orders' => $orders,
-            // 'pizzas' => $pizza
+            /*'id' => $pizza,*/
+            'orders' => $orders
         ]);
     }
 }
